@@ -29,8 +29,8 @@ Attributes:
 2. Recipe Entry Model
 Attributes:
 -title
--content
 -ingredients
+-content
 -user_id <= this will be the foreign key
 
 The User has_many :recipe_entries
