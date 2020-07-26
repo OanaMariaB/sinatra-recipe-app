@@ -19,21 +19,21 @@ Models:
 1. User
 2. Recipe entry
 
-User Model
+1. User Model
 Attributes:
 -name
 -email
 -password(if I use bcrypt this will be the password_digest in the DB)
 -
 
-Recipe Entry Model
+2. Recipe Entry Model
 Attributes:
--date
 -title
 -content
+-ingredients
 -user_id <= this will be the foreign key
 
-The User has_many :recipe entries
+The User has_many :recipe_entries
 A Recipe entry belongs_to :user
 
 MVP
@@ -41,5 +41,5 @@ MVP
 
 Stretch Goals:
 -CSS
--include a join model - include a Recipe model where a user can categorise the recipe entries
+-include a join model - include a Recipe model where a user can categorise the recipe entries.
 
