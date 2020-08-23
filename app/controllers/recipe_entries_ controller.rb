@@ -23,7 +23,16 @@ class RecipeEntriesController < ApplicationController
         end  
     end
 
+    get '/recipe_entries/:id' do
     #show page for a recipe entry
+        @recipe_entry = RecipeEntry.find(params[:id])
+        erb :'/recipe_entries/show'
+    end
+
+    get '/recipe_entries/:id/edit' do
+        #this route should send us to recipe_entries/edit.erb which will render an edit form
+        erb :'/recipe_entries/edit'
+    end
 
     #index route for all recipe entries
 
