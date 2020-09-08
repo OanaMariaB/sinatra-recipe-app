@@ -31,9 +31,38 @@ class RecipeEntriesController < ApplicationController
 
     get '/recipe_entries/:id/edit' do
         #this route should send us to recipe_entries/edit.erb which will render an edit form
-        erb :'/recipe_entries/edit'
+        @recipe_entry = RecipeEntry.find(params[:id])
+        if logged_in?
+            if @recipe_entry.user == current_user
+             erb :'/recipe_entries/edit'
+            else
+             redirect "users/#{current_user.id}"
+            end
+        else
+            redirect '/'
+        end
+    end
+
+    patch '/recipe_entries/:id' do
+        #this action job is to:
+        #1. find the recipe entry
+        @recipe_entry = RecipeEntry.find(params[:id])
+        #2. update the recipe entry
+        if logged_in?
+            if @recipe_entry.user == current_user
+            @recipe_entry.update(title: params[:title], ingredients: params[:ingredients], content: params[:content])
+            #3. redirect to ??
+            redirect "/recipe_entries/#{@recipe_entry.id}"
+            else
+            redirect "users/#{current_user.id}"
+            end
+        else
+         redirect '/'
+        end
     end
 
     #index route for all recipe entries
+
+
 
 end
