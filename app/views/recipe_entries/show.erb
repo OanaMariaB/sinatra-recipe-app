@@ -4,6 +4,7 @@ Recipe show page
 <p>Ingredients: <%= @recipe_entry.ingredients %> </p>
 <p> Content: <%= @recipe_entry.content %> </p>
 
-
+<% if current_user == @recipe_entry.user %>
 <a href="/recipe_entries/<%= @recipe_entry.id %>/edit">Edit Recipe Entry</a>
 Delete Link
+<% end %>
