@@ -1,7 +1,7 @@
 ALL RECIPE ENTRIES
 
 <% @recipe_entries.each do |recipe_entry| %>
-    <h3><%= recipe_entry.title %></h3>
+    <h4><a href="/recipe_entries/<%= recipe_entry.id %>"><%= recipe_entry.title %> </a> </h4>
     <p><%= recipe_entry.ingredients %></p>
     <p><%= recipe_entry.content %></p>
     <p>By <%= recipe_entry.user.name %></p>

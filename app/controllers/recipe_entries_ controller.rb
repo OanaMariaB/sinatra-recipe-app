@@ -1,6 +1,6 @@
 class RecipeEntriesController < ApplicationController
 
-
+      #index route for all recipe entries
     get '/recipe_entries' do
         @recipe_entries = RecipeEntry.all
         erb :'recipe_entries/index'
@@ -54,7 +54,7 @@ class RecipeEntriesController < ApplicationController
         @recipe_entry = RecipeEntry.find(params[:id])
         #2. update the recipe entry
         if logged_in?
-            if @recipe_entry.user == current_user
+            if @recipe_entry.user == current_user && params[:title] !="" && params[:ingredients] != "" && params[:content] != ""
             @recipe_entry.update(title: params[:title], ingredients: params[:ingredients], content: params[:content])
             #3. redirect to ??
             redirect "/recipe_entries/#{@recipe_entry.id}"
@@ -66,7 +66,18 @@ class RecipeEntriesController < ApplicationController
         end
     end
 
-    #index route for all recipe entries
+
+    delete '/recipe_entries/:id' do
+        @recipe_entry = RecipeEntry.find(params[:id])
+        if @recipe_entry.user == current_user
+            @recipe_entry.destroy
+            redirect '/recipe_entries'
+        else
+            redirect '/recipe_entries'
+        end
+     end
+
+   
 
 
 

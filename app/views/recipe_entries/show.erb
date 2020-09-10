@@ -6,5 +6,9 @@ Recipe show page
 
 <% if current_user == @recipe_entry.user %>
 <a href="/recipe_entries/<%= @recipe_entry.id %>/edit">Edit Recipe Entry</a>
-Delete Link
+    <form action="/recipe_entries/<%= @recipe_entry.id %>"method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="" value="Delete this Entry">
+    </form>
+
 <% end %>
