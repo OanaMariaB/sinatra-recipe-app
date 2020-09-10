@@ -1,7 +1,12 @@
 class RecipeEntriesController < ApplicationController
 
-    #get recipe_entries/new to render a form to create new entry
 
+    get '/recipe_entries' do
+        @recipe_entries = RecipeEntry.all
+        erb :'recipe_entries/index'
+      end
+
+    #get recipe_entries/new to render a form to create new entry
     get '/recipe_entries/new' do
         erb :'recipe_entries/new'
     end
