@@ -1,0 +1,9 @@
+ALL RECIPE ENTRIES
+
+<% @recipe_entries.each do |recipe_entry| %>
+    <h3><%= recipe_entry.title %></h3>
+    <p><%= recipe_entry.ingredients %></p>
+    <p><%= recipe_entry.content %></p>
+    <p>By <%= recipe_entry.user.name %></p>
+    <br><br>
+<% end %>    
