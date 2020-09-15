@@ -21,9 +21,11 @@ class RecipeEntriesController < ApplicationController
         end
 
         if params[:title] !="" && params[:ingredients] !="" && params[:content] !=""
+            flash[:message] = "Recipe entry suucesfully created."
             @recipe_entry = RecipeEntry.create(title: params[:title], ingredients: params[:ingredients], content: params[:content], user_id: current_user.id)
             redirect "/recipe_entries/#{@recipe_entry.id}"
-        else 
+        else
+            flash[:message] = "Something went wrong." 
           redirect '/recipe_entries/new'
         end  
     end
