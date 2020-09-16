@@ -16,9 +16,10 @@ class UsersController < ApplicationController
        #log the user in (create the session)
        session[:user_id] = @user.id #actually login the user in 
        #redirect to the users show page
+       flash[:message] = "Welcome, #{@user.name}"
        redirect "/users/#{@user.id}"
        else
-        flash[:message] = "Your credentials were invalid! Please sign up or try again."
+        flash[:errors] = "Your credentials were invalid! Please sign up or try again."
         #tell the user they entered invalid credential 
         #redirect them to the login page
         redirect '/login'
@@ -35,12 +36,15 @@ class UsersController < ApplicationController
     post '/users' do
         #here is where we will create a new user and persist the new user to the database
         #I only want to persisit an user that has a name, email, password
-        if params[:name] !="" && params[:email] !="" && params[:password] !=""
-            @user = User.create(params)
+        @user = User.new(params)
+        if @user.save
+            session[:user_id] = @user.id
             #I want to go to the user show page now
+            flash[:message] = "You have succesfully created an account, #{@user.name}!"
             redirect "/users/#{@user.id}"
         else   
             #maybe include a message as a strech goal telling the user there's an error
+            flash[:errors] = "Your account creation failure :#{@user.errors.full_messages.to_sentence}!"
             redirect "/signup"
         end
     end

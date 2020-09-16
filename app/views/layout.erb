@@ -21,11 +21,16 @@
     <a href="/recipe_entries/new">New Recipe Entry</a>
     <% end %>
 
+    
+    <div class="wrapper">
+
     <% if flash[:message] %>
         <h3> <%= flash[:message] %></h3>
     <% end %>
-    
-    <div class="wrapper">
+
+    <% if flash[:errors] %>
+        <h3> <%= flash[:errors] %></h3>
+    <% end %>
 
         <%= yield %>
 
