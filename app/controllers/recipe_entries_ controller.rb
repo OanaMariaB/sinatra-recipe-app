@@ -25,7 +25,7 @@ class RecipeEntriesController < ApplicationController
             @recipe_entry = RecipeEntry.create(title: params[:title], ingredients: params[:ingredients], content: params[:content], user_id: current_user.id)
             redirect "/recipe_entries/#{@recipe_entry.id}"
         else
-            flash[:message] = "Something went wrong." 
+            flash[:errors] = "Something went wrong." 
           redirect '/recipe_entries/new'
         end  
     end
@@ -38,16 +38,13 @@ class RecipeEntriesController < ApplicationController
 
     get '/recipe_entries/:id/edit' do
         #this route should send us to recipe_entries/edit.erb which will render an edit form
+        redirect_if_not_logged_in
         @recipe_entry = RecipeEntry.find(params[:id])
-        if logged_in?
             if @recipe_entry.user == current_user
              erb :'/recipe_entries/edit'
             else
              redirect "users/#{current_user.id}"
-            end
-        else
-            redirect '/'
-        end
+            end   
     end
 
     patch '/recipe_entries/:id' do
@@ -73,6 +70,7 @@ class RecipeEntriesController < ApplicationController
         @recipe_entry = RecipeEntry.find(params[:id])
         if @recipe_entry.user == current_user
             @recipe_entry.destroy
+            flash[:message] = "You have succesfully deleted that entry."
             redirect '/recipe_entries'
         else
             redirect '/recipe_entries'
