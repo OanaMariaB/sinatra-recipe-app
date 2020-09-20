@@ -1,8 +1,7 @@
-Recipe show page
 
-<p>Title: <%= @recipe_entry.title %> </p>
-<p>Ingredients: <%= @recipe_entry.ingredients %> </p>
-<p> Content: <%= @recipe_entry.content %> </p>
+<strong><p><%= @recipe_entry.title %> </p></strong>
+<strong><p>Ingredients:</strong> <%= @recipe_entry.ingredients %> </p>
+<strong><p> Prep: </strong><%= @recipe_entry.content %> </p>
 
 <% if current_user == @recipe_entry.user %>
 <a href="/recipe_entries/<%= @recipe_entry.id %>/edit">Edit Recipe Entry</a>

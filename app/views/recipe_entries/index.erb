@@ -1,9 +1,9 @@
-ALL RECIPE ENTRIES
+<h2> Welcome to Good Food</h2>
 
 <% @recipe_entries.each do |recipe_entry| %>
     <h4><a href="/recipe_entries/<%= recipe_entry.id %>"><%= recipe_entry.title %> </a> </h4>
-    <p><%= recipe_entry.ingredients %></p>
-    <p><%= recipe_entry.content %></p>
-    <p>By <%= recipe_entry.user.name %></p>
+    <strong><p>Ingredients:</strong> <%= recipe_entry.ingredients %></p>
+    <strong><p>Prep:</strong> <%= recipe_entry.content %></p>
+    <i><p>By <%= recipe_entry.user.name %></p></i>
     <br><br>
 <% end %>    

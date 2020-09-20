@@ -2,7 +2,7 @@ My Sinatra App
 
 User
 
-I am going to boil a recipe app where a User can create recipe entries. 
+I am going to build a recipe app where a User can create recipe entries. 
 
  A user will be able to:
 - Signup
